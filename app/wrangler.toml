@@ -1,5 +1,7 @@
-name = "my-app"
+name = "urls-analytics"
+main = "src/index.tsx"
 compatibility_date = "2023-12-01"
+
 
 # [vars]
 # MY_VAR = "my-variable"
@@ -12,10 +14,10 @@ compatibility_date = "2023-12-01"
 # binding = "MY_BUCKET"
 # bucket_name = "my-bucket"
 
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "my-database"
-# database_id = ""
+[[d1_databases]]
+binding = "DB"
+database_name = "short-urls"
+database_id = "ea787ddb-2f20-4f7b-a7d6-65f0d20a8b82"
 
 # [ai]
 # binding = "AI"
