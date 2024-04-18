@@ -128,7 +128,7 @@ app.delete("/delete", async (c) => {
 });
 
 //リダイレクト：短縮URLを元のURLにリダイレクトする
-app.get("/r/:shortUrl", async (c) => {
+app.get("r/:shortUrl", async (c) => {
   const adapter = new PrismaD1(c.env.DB);
   const prisma = new PrismaClient({ adapter });
 
@@ -141,7 +141,11 @@ app.get("/r/:shortUrl", async (c) => {
   });
   //urlが存在しない場合はエラーを返す
   if (!url) {
-    return c.text("error occured"), c.status(404), c.redirect("/");
+    return (
+      c.text("error occured"),
+      c.status(404),
+      c.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+    );
   }
 
   //Analyticsが有効になっている場合は、アクセスデータを記録する
@@ -166,11 +170,7 @@ app.get("/r/:shortUrl", async (c) => {
   }
 
   //取得できたら、そのURLにリダイレクトする
-  if (url) {
-    return c.redirect(url.originalURL);
-  } else {
-    return c.text("error occured"), c.status(404), c.redirect("/");
-  }
+  return c.redirect(url.originalURL);
 });
 
 export default app;
